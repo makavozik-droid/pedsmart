@@ -1,0 +1,11 @@
+@use "../abstracts/variables" as *;
+
+@mixin respond($bp) {
+  @if $bp == sm { @media (min-width: $bp-sm) { @content; } }
+  @if $bp == md { @media (min-width: $bp-md) { @content; } }
+  @if $bp == lg { @media (min-width: $bp-lg) { @content; } }
+}
+
+@mixin fluid($min, $max) {
+  font-size: clamp($min, 1.1rem + 1.2vw, $max);
+}

@@ -1,0 +1,27 @@
+/* Кольори з макета + акценти */
+$color-primary: #3B5AFE;  // кнопки/посилання
+$color-accent-yellow: #FDCB00;
+$color-accent-red:    #E83E3E;
+$color-accent-green:  #00A86B;
+
+$color-bg:    #ffffff;
+$color-text:  #111315;
+$color-muted: #6b7280;
+$surface:     #f6f7fb;
+
+/* Breakpoints */
+$bp-lg: 1200px;
+$bp-md: 992px;
+$bp-sm: 768px;
+$bp-xs: 560px;
+
+/* Інші змінні */
+$radius-lg: 20px;
+$shadow: 0 10px 24px rgba(0,0,0,.08);
+
+$container-max: 1200px;
+$gutter: 24px;
+
+$bp-sm: 480px;
+$bp-md: 768px;
+$bp-lg: 1024px;

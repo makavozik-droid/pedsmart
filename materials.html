@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PedSmart — Навчальні матеріали</title>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Poppins:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="dist/main.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header__wrap">
+      <a class="brand" href="index.html">
+        <img class="brand__logo" src="https://i.pinimg.com/1200x/5d/9a/e2/5d9ae2198173d54154e8bc4595394846.jpg" alt="PedSmart logo" />
+        <span class="brand__text"><span class="brand__ped">Ped</span><span class="brand__smart">Smart</span></span>
+      </a>
+
+      <nav class="nav">
+        <ul class="nav__list">
+          <li class="nav__item nav__dropdown">
+            <button class="nav__link">Навчальні інструменти</button>
+            <div class="dropdown">
+              <a href="materials.html" class="dropdown__link">Бібліотека</a>
+              <a href="flashcards.html" class="dropdown__link">Флешкартки</a>
+              <a href="quizzes.html"  class="dropdown__link">Тести</a>
+            </div>
+          </li>
+          <li class="nav__item nav__dropdown">
+            <button class="nav__link">Теми</button>
+            <div class="dropdown dropdown--mega">
+              <div class="dropdown__group">
+                <h4 class="dropdown__title">👶 Педіатрія та розвиток</h4>
+                <a class="dropdown__link" href="materials.html#afo">🧬 АФО</a>
+                <a class="dropdown__link" href="materials.html#newborns">👶 Новонароджені</a>
+                <a class="dropdown__link" href="materials.html#feeding">🍼 Вигодовування</a>
+                <a class="dropdown__link" href="materials.html#neonatal-diseases">⚕️ Хвороби новонароджених</a>
+              </div>
+              <div class="dropdown__group">
+                <h4 class="dropdown__title">💉 Соматичні захворювання</h4>
+                <a class="dropdown__link" href="materials.html#avitaminosis">🥕 Авітамінози</a>
+                <a class="dropdown__link" href="materials.html#constitution">🧍‍♂️ Аномалії конституції</a>
+                <a class="dropdown__link" href="materials.html#respiratory">🌬 Хвороби дихання</a>
+                <a class="dropdown__link" href="materials.html#gi">🍽 Хвороби ШКТ</a>
+                <a class="dropdown__link" href="materials.html#cvd">❤️ Хвороби ССС</a>
+                <a class="dropdown__link" href="materials.html#hematology">🩸 Хвороби крові</a>
+                <a class="dropdown__link dropdown__link--accent" href="materials.html#anemia">➡️ Анемія</a>
+                <a class="dropdown__link" href="materials.html#endocrine">🧠 Ендокринні</a>
+                <a class="dropdown__link" href="materials.html#urinary">💧 Сечова система</a>
+              </div>
+              <div class="dropdown__group">
+                <h4 class="dropdown__title">🦠 Інфекції та невідкладні</h4>
+                <a class="dropdown__link" href="materials.html#tb">💊 Туберкульоз</a>
+                <a class="dropdown__link" href="materials.html#ari">🤧 ГРВІ</a>
+                <a class="dropdown__link" href="materials.html#pediatric-infections">🧫 Дитячі інфекції</a>
+                <a class="dropdown__link" href="materials.html#intestinal-infections">🍎 Кишкові інфекції</a>
+                <a class="dropdown__link" href="materials.html#hepatitis">🫀 Гепатити</a>
+                <a class="dropdown__link" href="materials.html#hiv">🧩 ВІЛ</a>
+                <a class="dropdown__link" href="materials.html#emergency">🚑 Невідкладні стани</a>
+              </div>
+            </div>
+          </li>
+        </ul>
+
+        <div class="nav__actions">
+          <a class="btn btn--ghost"   href="/admin/">Створити +</a>
+          <a class="btn btn--primary" href="/admin/">Увійти</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- Шапка сторінки -->
+    <section class="hero" style="padding:32px 0;">
+      <div class="container hero__container" style="grid-template-columns:1fr;">
+        <div class="hero__content">
+          <h1 class="hero__title">Навчальні матеріали</h1>
+          <p class="hero__subtitle">Теми з доказової педіатрії, клінічні випадки, флешкартки та тести.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="values" id="library">
+  <div class="container">
+    <div class="values__head">
+      <h2>Бібліотека</h2>
+      <p>Підбірка матеріалів: підручники, протоколи, методичні рекомендації.</p>
+    </div>
+
+    <div class="lib__grid">
+      <!-- Підручник -->
+      <article class="card">
+        <a href="https://textbook.com.ua/medicina/1473451387" target="_blank" rel="noopener">
+          <img class="card__img" src="https://i.pinimg.com/1200x/5e/7e/11/5e7e11526e95a25ed0b01a195585b245.jpg" alt="Підручник з педіатрії">
+          <h3 class="card__title">Педіатрія — підручник</h3>
+          <p class="card__text">Базовий курс для студентів та інтернів.</p>
+        </a>
+      </article>
+
+      <!-- Методичні матеріали (SSPU repo) -->
+      <article class="card">
+        <a href="https://repository.sspu.edu.ua/server/api/core/bitstreams/48a283f1-e7e5-4127-b38a-004866fad4a7/content" target="_blank" rel="noopener">
+          <img class="card__img" src="https://i.pinimg.com/736x/e4/39/26/e439265413009119e4508a578c897b6c.jpg" alt="Методичні рекомендації">
+          <h3 class="card__title">Методичні матеріали</h3>
+          <p class="card__text">Практичні рекомендації для занять.</p>
+        </a>
+      </article>
+
+      <!-- Завантажуваний посібник -->
+      <article class="card">
+        <a href="https://profbook.com.ua/index.php?route=product/product/download&product_id=2829&download_id=1876" target="_blank" rel="noopener">
+          <img class="card__img" src="https://i.pinimg.com/736x/91/6c/19/916c1956d2e430bc456c636a32596df7.jpg" alt="Посібник у PDF">
+          <h3 class="card__title">Посібник (PDF)</h3>
+          <p class="card__text">Завантажуваний навчальний матеріал.</p>
+        </a>
+      </article>
+
+      <!-- Протоколи МОЗ -->
+      <article class="card">
+        <a href="https://guidelines.moz.gov.ua/documents" target="_blank" rel="noopener">
+          <img class="card__img" src="https://i.pinimg.com/736x/a2/ec/27/a2ec276e98f8fe2418bbf32d3b553581.jpg" alt="Протоколи МОЗ">
+          <h3 class="card__title">Протоколи МОЗ</h3>
+          <p class="card__text">Офіційні настанови й стандарти лікування.</p>
+        </a>
+      </article>
+    </div>
+  </div>
+</section>
+    </main>
+
+  <footer class="site-footer">
+    <div class="container footer__wrap">
+      <div>© PedSmart 2025</div>
+      <nav class="footer__nav">
+        <a href="materials.html">Бібліотека</a>
+        <a href="#">Контакти</a>
+        <a href="#">Політика приватності</a>
+      </nav>
+    </div>
+  </footer>
+</body>
+</html>

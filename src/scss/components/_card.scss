@@ -1,0 +1,10 @@
+@use "../abstracts/variables" as *;
+
+.card {
+  background: #fff; border-radius: $radius-lg; box-shadow: $shadow; padding: 16px;
+  transition: transform .15s ease, box-shadow .15s ease;
+  &:hover { transform: translateY(-4px) scale(1.02); box-shadow: 0 12px 28px rgba(0,0,0,.12); }
+  &__img { border-radius: 14px; margin-bottom: 12px; }
+  &__title { font-weight: 800; margin-bottom: 6px; }
+  &__text { color: $color-muted; }
+}

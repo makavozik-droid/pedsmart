@@ -1,0 +1,48 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
+
+.hero { 
+  padding: 56px 0; 
+  background:
+    radial-gradient(1200px 400px at 100% -100px, #F6F7FB 20%, transparent 60%),
+    #fff;
+  text-align: center; /* ЦЕНТР */
+}
+
+.hero__container {
+  display: grid; gap: 24px;
+  justify-items: center;        /* ЦЕНТР по горизонталі */
+  grid-template-columns: 1fr;   /* одна колонка і на десктопі */
+}
+
+.hero__title { 
+  @include fluid(36px, 64px);   /* крупніше */
+  font-weight: 800;
+  margin-bottom: 8px;
+  /* Точне фарбування двочастинної назви */
+.hero .hero__title .brand__ped   { color: $color-text !important; }   /* #111315 */
+.hero .hero__title .brand__smart { color: $color-primary !important; } /* #3B5AFE */
+}
+
+.hero__subtitle { 
+  margin-top: 8px; 
+  max-width: 70ch; 
+  margin-inline: auto;
+}
+
+.hero__actions { 
+  margin-top: 24px; 
+  display: flex; gap: 16px; 
+  flex-wrap: wrap; 
+  justify-content: center;      /* кнопки по центру */
+}
+
+/* ОДНАКОВИЙ РОЗМІР для обох кнопок у hero */
+.hero__actions .btn { 
+  height: 52px; 
+  padding: 0 24px; 
+  border-radius: 28px;
+  font-size: 18px;
+  min-width: 260px;             /* однакова ширина */
+}
+

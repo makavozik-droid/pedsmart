@@ -1,0 +1,62 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "assets/uploads"
+public_folder: "/assets/uploads"
+
+collections:
+  - name: "flashcards"
+    label: "Флешкартки"
+    folder: "content/flashcards"
+    extension: "yaml"
+    create: true
+    fields:
+      - { name: title, label: Назва }
+      - { name: slug,  label: Слаг }
+      - { name: subject, label: Предмет, required: false }
+      - { name: tags, label: Теги, widget: list, required: false }
+      - name: cards
+        label: Картки
+        widget: list
+        fields:
+          - { name: front, label: Питання/Термін }
+          - { name: back,  label: Відповідь/Пояснення }
+          - { name: image, label: Зображення, widget: image, required: false }
+
+  - name: "quizzes"
+    label: "Тести"
+    folder: "content/quizzes"
+    extension: "yaml"
+    create: true
+    fields:
+      - { name: title, label: Назва }
+      - { name: slug,  label: Слаг }
+      - { name: subject, label: Предмет, required: false }
+      - { name: tags, label: Теги, widget: list, required: false }
+      - name: questions
+        label: Питання
+        widget: list
+        fields:
+          - { name: text, label: Питання }
+          - name: answers
+            label: Варіанти
+            widget: list
+            field: { name: option, label: Відповідь }
+          - name: correct
+            label: Правильні індекси (0..n)
+            widget: list
+            field: { name: index, label: Індекс, widget: number, value_type: int }
+          - { name: explanation, label: Пояснення, required: false }
+
+  - name: "library"
+    label: "Бібліотека"
+    folder: "content/library"
+    extension: "yaml"
+    create: true
+    fields:
+      - { name: title, label: Назва }
+      - { name: slug,  label: Слаг }
+      - { name: description, label: Опис, widget: text }
+      - { name: file, label: Файл/PDF, widget: file, required: false }
+      - { name: source, label: Джерело (URL), required: false }

@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PedSmart — Флешкартки</title>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Poppins:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="dist/main.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header__wrap">
+      <a class="brand" href="index.html">
+        <img class="brand__logo" src="https://i.pinimg.com/1200x/5d/9a/e2/5d9ae2198173d54154e8bc4595394846.jpg" alt="PedSmart logo" />
+        <span class="brand__text"><span class="brand__ped">Ped</span><span class="brand__smart">Smart</span></span>
+      </a>
+
+      <nav class="nav">
+        <ul class="nav__list">
+          <li class="nav__item nav__dropdown">
+            <button class="nav__link">Навчальні інструменти</button>
+            <div class="dropdown">
+              <a href="materials.html" class="dropdown__link">Бібліотека</a>
+              <a href="flashcards.html" class="dropdown__link">Флешкартки</a>
+              <a href="quizzes.html"  class="dropdown__link">Тести</a>
+            </div>
+          </li>
+          <li class="nav__item nav__dropdown">
+            <button class="nav__link">Теми</button>
+            <div class="dropdown dropdown--mega">
+              <div class="dropdown__group">
+                <h4 class="dropdown__title">👶 Педіатрія та розвиток</h4>
+                <a class="dropdown__link" href="materials.html#afo">🧬 АФО</a>
+                <a class="dropdown__link" href="materials.html#newborns">👶 Новонароджені</a>
+                <a class="dropdown__link" href="materials.html#feeding">🍼 Вигодовування</a>
+                <a class="dropdown__link" href="materials.html#neonatal-diseases">⚕️ Хвороби новонароджених</a>
+              </div>
+              <div class="dropdown__group">
+                <h4 class="dropdown__title">💉 Соматичні захворювання</h4>
+                <a class="dropdown__link" href="materials.html#avitaminosis">🥕 Авітамінози</a>
+                <a class="dropdown__link" href="materials.html#constitution">🧍‍♂️ Аномалії конституції</a>
+                <a class="dropdown__link" href="materials.html#respiratory">🌬 Хвороби дихання</a>
+                <a class="dropdown__link" href="materials.html#gi">🍽 Хвороби ШКТ</a>
+                <a class="dropdown__link" href="materials.html#cvd">❤️ Хвороби ССС</a>
+                <a class="dropdown__link" href="materials.html#hematology">🩸 Хвороби крові</a>
+                <a class="dropdown__link dropdown__link--accent" href="materials.html#anemia">➡️ Анемія</a>
+                <a class="dropdown__link" href="materials.html#endocrine">🧠 Ендокринні</a>
+                <a class="dropdown__link" href="materials.html#urinary">💧 Сечова система</a>
+              </div>
+              <div class="dropdown__group">
+                <h4 class="dropdown__title">🦠 Інфекції та невідкладні</h4>
+                <a class="dropdown__link" href="materials.html#tb">💊 Туберкульоз</a>
+                <a class="dropdown__link" href="materials.html#ari">🤧 ГРВІ</a>
+                <a class="dropdown__link" href="materials.html#pediatric-infections">🧫 Дитячі інфекції</a>
+                <a class="dropdown__link" href="materials.html#intestinal-infections">🍎 Кишкові інфекції</a>
+                <a class="dropdown__link" href="materials.html#hepatitis">🫀 Гепатити</a>
+                <a class="dropdown__link" href="materials.html#hiv">🧩 ВІЛ</a>
+                <a class="dropdown__link" href="materials.html#emergency">🚑 Невідкладні стани</a>
+              </div>
+            </div>
+          </li>
+        </ul>
+
+        <div class="nav__actions">
+          <a class="btn btn--ghost"   href="/admin/">Створити +</a>
+          <a class="btn btn--primary" href="/admin/">Увійти</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" style="padding:32px 0;">
+      <div class="container" style="display:grid;gap:8px;">
+        <h1 class="hero__title">Флешкартки</h1>
+        <p class="hero__subtitle">Обирайте тему, перегортайте картки, закріплюйте знання.</p>
+      </div>
+    </section>
+
+    <section class="values" id="anemia">
+  <div class="container">
+    <div class="values__head">
+      <h2>Набір: <span>ЗДА у дітей</span></h2>
+      <p>Натисніть «Перевернути» або клавішу <kbd>Пробіл</kbd>/<kbd>Enter</kbd>.</p>
+    </div>
+    <div class="fc fc--pink" id="fc-anemia"></div>
+  </div>
+</section>
+
+<script src="src/js/pedsmart.js"></script>
+
+  <footer class="site-footer">
+    <div class="container footer__wrap">
+      <div>© PedSmart 2025</div>
+      <nav class="footer__nav">
+        <a href="materials.html">Бібліотека</a>
+        <a href="#">Контакти</a>
+        <a href="#">Політика приватності</a>
+      </nav>
+    </div>
+  </footer>
+</body>
+</html>

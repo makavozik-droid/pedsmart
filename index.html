@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PedSmart — Головна</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Poppins:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="dist/main.css?v=3" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header__wrap">
+      <a class="brand" href="index.html">
+        <img class="brand__logo" src="https://i.pinimg.com/1200x/5d/9a/e2/5d9ae2198173d54154e8bc4595394846.jpg" alt="PedSmart logo" />
+        <span class="brand__text"><span class="brand__ped">Ped</span><span class="brand__smart">Smart</span></span>
+      </a>
+
+      <nav class="nav">
+        <ul class="nav__list">
+          <li class="nav__item nav__dropdown">
+            <button class="nav__link">Навчальні інструменти</button>
+            <div class="dropdown">
+              <a href="materials.html" class="dropdown__link">Бібліотека</a>
+              <a href="flashcards.html" class="dropdown__link">Флешкартки</a>
+              <a href="quizzes.html"  class="dropdown__link">Тести</a>
+            </div>
+          </li>
+          <li class="nav__item nav__dropdown">
+            <button class="nav__link">Теми</button>
+            <div class="dropdown dropdown--mega">
+              <div class="dropdown__group">
+                <h4 class="dropdown__title">👶 Педіатрія та розвиток</h4>
+                <a class="dropdown__link" href="materials.html#afo">🧬 АФО</a>
+                <a class="dropdown__link" href="materials.html#newborns">👶 Новонароджені</a>
+                <a class="dropdown__link" href="materials.html#feeding">🍼 Вигодовування</a>
+                <a class="dropdown__link" href="materials.html#neonatal-diseases">⚕️ Хвороби новонароджених</a>
+              </div>
+              <div class="dropdown__group">
+                <h4 class="dropdown__title">💉 Соматичні захворювання</h4>
+                <a class="dropdown__link" href="materials.html#avitaminosis">🥕 Авітамінози</a>
+                <a class="dropdown__link" href="materials.html#constitution">🧍‍♂️ Аномалії конституції</a>
+                <a class="dropdown__link" href="materials.html#respiratory">🌬 Хвороби дихання</a>
+                <a class="dropdown__link" href="materials.html#gi">🍽 Хвороби ШКТ</a>
+                <a class="dropdown__link" href="materials.html#cvd">❤️ Хвороби ССС</a>
+                <a class="dropdown__link" href="materials.html#hematology">🩸 Хвороби крові</a>
+                <a class="dropdown__link dropdown__link--accent" href="materials.html#anemia">➡️ Анемія</a>
+                <a class="dropdown__link" href="materials.html#endocrine">🧠 Ендокринні</a>
+                <a class="dropdown__link" href="materials.html#urinary">💧 Сечова система</a>
+              </div>
+              <div class="dropdown__group">
+                <h4 class="dropdown__title">🦠 Інфекції та невідкладні</h4>
+                <a class="dropdown__link" href="materials.html#tb">💊 Туберкульоз</a>
+                <a class="dropdown__link" href="materials.html#ari">🤧 ГРВІ</a>
+                <a class="dropdown__link" href="materials.html#pediatric-infections">🧫 Дитячі інфекції</a>
+                <a class="dropdown__link" href="materials.html#intestinal-infections">🍎 Кишкові інфекції</a>
+                <a class="dropdown__link" href="materials.html#hepatitis">🫀 Гепатити</a>
+                <a class="dropdown__link" href="materials.html#hiv">🧩 ВІЛ</a>
+                <a class="dropdown__link" href="materials.html#emergency">🚑 Невідкладні стани</a>
+              </div>
+            </div>
+          </li>
+        </ul>
+
+        <div class="nav__actions">
+          <a class="btn btn--ghost"   href="/admin/">Створити +</a>
+          <a class="btn btn--primary" href="/admin/">Увійти</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero__container">
+        <div class="hero__content">
+          <h1 class="hero__title">
+  Чому <span class="brand__ped">Ped</span><span class="brand__smart">Smart</span>?
+</h1>
+          <p class="hero__subtitle">Створюйте флешкартки й тести без коду, вчіть студентів на реальних клінічних кейсах і сучасних протоколах.</p>
+          <div class="hero__actions">
+            <a href="/admin/" class="btn btn--primary">Зареєструватись</a>
+            <a href="materials.html" class="btn btn--ghost">Переглянути матеріали</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="values">
+  <div class="container">
+
+    <!-- ТРЕК КАРУСЕЛІ (тільки картки) -->
+    <div class="values__track" id="carousel">
+      <div class="values__cards"></div>
+
+      <!-- 1: Бібліотека -->
+      <article class="card card--flip" data-link="materials.html">
+        <div class="card__inner">
+          <div class="card__face card__front">
+            <img class="card__img" src="https://i.pinimg.com/736x/a0/a8/f3/a0a8f3e594095a44f2071b459c91460c.jpg" alt="Бібліотека">
+            <h3 class="card__title">Бібліотека</h3>
+            <p class="card__text">Підручники та протоколи.</p>
+          </div>
+          <div class="card__face card__back">
+            <p class="card__text">Підручники, протоколи, методички.</p>
+            <a href="materials.html" class="btn btn--primary">Перейти</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- 2: Картки -->
+      <article class="card card--flip" data-link="flashcards.html">
+        <div class="card__inner">
+          <div class="card__face card__front">
+            <img class="card__img" src="https://i.pinimg.com/736x/90/94/e8/9094e88c0a7da761c172d0e915094612.jpg" alt="Картки">
+            <h3 class="card__title">Картки</h3>
+            <p class="card__text">Флешкартки для повторення.</p>
+          </div>
+          <div class="card__face card__back">
+            <p class="card__text">Інтерактивні флешкартки з тем.</p>
+            <a href="flashcards.html" class="btn btn--primary">Перейти</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- 3: Клінічні випадки -->
+      <article class="card card--flip" data-link="#">
+        <div class="card__inner">
+          <div class="card__face card__front">
+            <img class="card__img" src="https://i.pinimg.com/1200x/e6/91/f4/e691f462fce35c852472e6fa39338dfb.jpg" alt="Клінічні випадки">
+            <h3 class="card__title">Клінічні випадки</h3>
+            <p class="card__text">Практичні кейси.</p>
+          </div>
+          <div class="card__face card__back">
+            <p class="card__text">Реальні кейси для діагностики.</p>
+            <a href="#" class="btn btn--primary">Перейти</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- 4: Тести -->
+      <article class="card card--flip" data-link="quizzes.html">
+        <div class="card__inner">
+          <div class="card__face card__front">
+            <img class="card__img" src="https://i.pinimg.com/736x/91/6c/19/916c1956d2e430bc456c636a32596df7.jpg" alt="Тести">
+            <h3 class="card__title">Тести</h3>
+            <p class="card__text">Швидка перевірка знань.</p>
+          </div>
+          <div class="card__face card__back">
+            <p class="card__text">Обирайте тему — проходьте тест.</p>
+            <a href="quizzes.html" class="btn btn--primary">Перейти</a>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <div class="carousel__controls">
+      <button class="carousel__btn" id="car-prev" aria-label="Попередня">‹</button>
+      <button class="carousel__btn" id="car-next" aria-label="Наступна">›</button>
+    </div>
+
+    <div class="values__hint">Прокрутіть ← → або свайпніть</div>
+  </div>
+</section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer__wrap">
+      <div>© PedSmart 2025</div>
+      <nav class="footer__nav">
+        <a href="materials.html">Бібліотека</a>
+        <a href="#">Контакти</a>
+        <a href="#">Політика приватності</a>
+      </nav>
+    </div>
+  </footer>
+  <script src="src/js/pedsmart.js?v=12"></script>
+</body>
+</html>

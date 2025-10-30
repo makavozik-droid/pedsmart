@@ -1,0 +1,12 @@
+{
+  "name": "pedsmart",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "sass --watch src/scss/main.scss dist/main.css",
+    "build": "sass src/scss/main.scss dist/main.css --no-source-map --style=compressed"
+  },
+  "devDependencies": {
+    "sass": "^1.80.0"
+  }
+}

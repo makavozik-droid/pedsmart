@@ -1,0 +1,108 @@
+@use "../abstracts/variables" as *;
+
+/* контейнер шапки */
+.site-header { position: sticky; top: 0; z-index: 1000; background: #fff; box-shadow: 0 2px 12px rgba(0,0,0,.04); }
+
+.header__wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 0;
+}
+
+/* бренд: близько логотип + текст */
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px; /* було 6–10px — тепер ближче */
+}
+.brand__logo { width: 56px; height: 56px; border-radius: 12px; }
+.brand__text { font-family: "Poppins", sans-serif; font-weight: 800; font-size: 28px; }
+.brand__ped { color: #00b5cc; }
+.brand__smart { color: $color-primary; }
+
+/* навігація */
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 380px; /* було 12px — додали відступ */
+  margin-left: 24px; /* трохи відсунули від логотипа */
+}
+.nav__list {
+  display: flex;
+  align-items: center;
+  gap: 56px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  flex-wrap: nowrap;        /* не переносити */
+}
+.nav__link {
+  background: none;
+  border: none;
+  font: inherit;
+  cursor: pointer;
+  color: #111315;
+  padding: 6px 0;
+  border-radius: 0;
+  transition: color 0.2s ease;
+}
+.nav__link:hover {
+  color: #3B5AFE; /* синій як у PedSmart */
+}
+
+/* кнопки справа однакового розміру і не стискаються */
+.nav__actions {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-shrink: 0;
+}
+.nav__actions .btn {
+  height: 44px;
+  padding: 0 24px;
+  border-radius: 22px;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+/* ширші дропдауни */
+.dropdown { min-width: 240px; padding: 10px; }
+.dropdown--wide { min-width: 300px; }
+.dropdown__link { padding: 10px 14px; border-radius: 10px; }
+
+/* адаптив: якщо тісно — кнопки стають на другу лінію під меню */
+@media (max-width: 900px) {
+  .nav { flex-wrap: wrap; }
+  .nav__actions { width: 100%; margin-left: 0; justify-content: flex-end; padding-top: 8px; }
+}
+
+/* ===== Responsive header ===== */
+@media (max-width: $bp-md) {
+  .header__wrap { gap: 12px; }
+  .brand__logo { width: 48px; height: 48px; }
+  .brand__text { font-size: 24px; }
+  .nav__list { gap: 12px; }
+}
+
+@media (max-width: $bp-sm) {
+  .header__wrap { flex-wrap: wrap; row-gap: 8px; }
+  .nav { width: 100%; display: flex; justify-content: space-between; }
+  .nav__list { gap: 10px; }
+  .nav__actions { gap: 8px; }
+  .btn { height: 40px; padding: 0 14px; }
+}
+
+@media (max-width: $bp-xs) {
+  .brand__logo { width: 40px; height: 40px; }
+  .brand__text { font-size: 20px; }
+  .nav__list { gap: 8px; }
+  .nav__link { padding: 4px 0; }
+}
+/* кнопки стають іконками */
+@media (max-width: 400px) {
+  .btn--primary { padding: 0; width: 44px; }
+  .btn--secondary { padding: 0; width: 44px; }
+}

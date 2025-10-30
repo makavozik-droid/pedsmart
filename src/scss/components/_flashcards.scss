@@ -1,0 +1,254 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
+
+.fc { display: grid; gap: 16px; justify-items: center; }
+.fc__controls { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+.fc__btn { 
+  @extend .btn !optional; 
+  @extend .btn--ghost !optional; 
+}
+
+.fc__stage {
+  perspective: 1200px;
+  width: min(800px, 100%);
+  margin: 0 auto;
+}
+
+.fc-card {
+  position: relative; width: 100%; min-height: 220px;
+  transform-style: preserve-3d; transition: transform .5s ease;
+  border-radius: $radius-lg; box-shadow: $shadow; background: #fff; padding: 20px;
+}
+.fc-card.is-flipped { transform: rotateY(180deg); }
+
+.fc-face {
+  position: absolute; inset: 0; padding: 20px;
+  backface-visibility: hidden; border-radius: $radius-lg;
+  display: grid; align-content: center; justify-items: start; gap: 8px;
+}
+.fc-front { }
+.fc-back  { transform: rotateY(180deg); background: #f7f8ff; }
+
+.fc__meta { display: flex; gap: 10px; align-items: center; justify-content: center; font-size: 14px; color: $color-muted; }
+.fc__counter { font-weight: 700; }
+
+.fc__grid { /* для режиму “сітка” (опційно) */
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap: 12px;
+}
+/* =====================================================
+   🎨 ТЕМИ ДЛЯ ФЛЕШКАРТОК: рожевa 💕 + м’ятна 🌿
+   ===================================================== */
+
+/* БАЗОВІ СТИЛІ — спільні для всіх тем */
+.fc {
+  max-width: 760px;
+  margin: 0 auto;
+  text-align: center;
+}
+.fc__card {
+  border-radius: 20px;
+  padding: 28px 24px;
+  min-height: 260px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.35s ease;
+}
+.fc__title {
+  font-size: clamp(18px, 2.2vw, 22px);
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.fc__text {
+  font-size: clamp(16px, 2vw, 18px);
+  line-height: 1.65;
+}
+.fc__btn {
+  border: none;
+  border-radius: 8px;
+  padding: 10px 18px;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+.fc__counter {
+  margin-top: 8px;
+  font-size: 15px;
+}
+
+/* =====================================================
+   🎨 ТЕМИ ФЛЕШКАРТОК: 💕 Рожева | 🌿 М’ятна | 💜 Лавандова
+   ===================================================== */
+
+/* === БАЗА (спільна для всіх тем) === */
+.fc {
+  max-width: 760px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.fc__card {
+  border-radius: 20px;
+  padding: 28px 24px;
+  min-height: 260px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.35s ease;
+}
+
+.fc__title {
+  font-size: clamp(18px, 2.2vw, 22px);
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.fc__text {
+  font-size: clamp(16px, 2vw, 18px);
+  line-height: 1.65;
+}
+
+.fc__btn {
+  border: none;
+  border-radius: 8px;
+  padding: 10px 18px;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.fc__counter {
+  margin-top: 8px;
+  font-size: 15px;
+}
+
+/* 💕 РОЖЕВА */
+.fc--pink .fc__card {
+  background: linear-gradient(180deg, #fff9fb 0%, #ffeef5 100%);
+  box-shadow: 0 12px 24px rgba(255, 182, 193, 0.25);
+}
+.fc--pink .fc__card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 32px rgba(255, 182, 193, 0.35);
+}
+.fc--pink .fc__title { color: #3a0a1b; }
+.fc--pink .fc__text  { color: #5e3a4a; }
+.fc--pink .fc__btn {
+  background: #ffb6c1;
+}
+.fc--pink .fc__btn:hover {
+  background: #ff9eb1;
+  transform: translateY(-2px);
+}
+
+/* 🌿 М’ЯТНА */
+.fc--mint .fc__card {
+  background: linear-gradient(180deg, #f6fff9 0%, #e3fdf3 100%);
+  box-shadow: 0 12px 24px rgba(0, 150, 136, 0.18);
+}
+.fc--mint .fc__card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 32px rgba(0, 150, 136, 0.28);
+}
+.fc--mint .fc__title { color: #0f3d2e; }
+.fc--mint .fc__text  { color: #2f4f4f; }
+.fc--mint .fc__btn {
+  background: #4ad1a7;
+}
+.fc--mint .fc__btn:hover {
+  background: #34b58e;
+  transform: translateY(-2px);
+}
+
+/* 💜 ЛАВАНДОВА */
+.fc--lavender .fc__card {
+  background: linear-gradient(180deg, #f9f8ff 0%, #f0e8ff 100%);
+  box-shadow: 0 12px 24px rgba(111, 78, 219, 0.18);
+}
+.fc--lavender .fc__card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 32px rgba(111, 78, 219, 0.28);
+}
+.fc--lavender .fc__title { color: #33225e; }
+.fc--lavender .fc__text  { color: #4a3d73; }
+.fc--lavender .fc__btn {
+  background: #8b7efb;
+}
+.fc--lavender .fc__btn:hover {
+  background: #7766f5;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(111, 78, 219, 0.35);
+}
+
+/* 📱 Адаптація */
+@media (max-width: 768px) {
+  .fc__card {
+    min-height: 220px;
+    padding: 20px 16px;
+  }
+
+  .fc__title {
+    font-size: 18px;
+  }
+
+  .fc__btn {
+    padding: 8px 14px;
+  }
+}
+/* ===== Панель вибору тем — ніжна, знизу під картками ===== */
+.fc__themebar {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  margin: 28px auto 0;            /* тепер панель нижче карток */
+  background: none;
+  box-shadow: none;
+  padding: 0;
+}
+
+.fc__chip {
+  border: none;
+  border-radius: 999px;
+  padding: 8px 16px;
+  font-weight: 500;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all .25s ease;
+  color: #2d2d2d;
+  background: rgba(255,255,255,0.8);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 2px 8px rgba(0,0,0,.05);
+}
+
+.fc__chip:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0,0,0,.08);
+}
+
+.fc__chip.is-active {
+  box-shadow: 0 6px 16px rgba(0,0,0,.12);
+  transform: scale(1.04);
+}
+
+/* приглушені кольори тем */
+.fc__chip[data-theme="pink"]     { background: #fff3f6; color: #b84c67; }
+.fc__chip[data-theme="mint"]     { background: #f2fff8; color: #2c735b; }
+.fc__chip[data-theme="lavender"] { background: #f6f4ff; color: #554c9a; }
+
+/* адаптація для телефонів */
+@media (max-width: 480px) {
+  .fc__themebar {
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
+  }
+  .fc__chip {
+    padding: 7px 14px;
+    font-size: 14px;
+  }
+}
+/* ===================================================== */

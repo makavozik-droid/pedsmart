@@ -1,0 +1,65 @@
+@use "../abstracts/variables" as *;
+
+.nav__dropdown { position: relative; }
+
+/* БАЗА для ВСІХ випадаючих */
+.dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  min-width: 240px;
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.12);
+  padding: 10px;
+  display: none;       /* <- ховаємо за замовчуванням */
+  z-index: 100;
+}
+
+/* Варіанти ширини / макета */
+.dropdown--wide { min-width: 520px; padding: 14px; }
+.dropdown--mega {
+  min-width: 560px;
+  padding: 16px;
+  display: none;       /* <- ТЕЖ ховаємо! */
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px 24px;
+}
+
+/* Показувати при hover або фокусі всередині */
+.nav__dropdown:hover .dropdown,
+.nav__dropdown:focus-within .dropdown,
+.nav__dropdown:hover .dropdown--wide,
+.nav__dropdown:focus-within .dropdown--wide,
+.nav__dropdown:hover .dropdown--mega,
+.nav__dropdown:focus-within .dropdown--mega {
+  display: block;
+  display: grid; /* для .dropdown--mega це перезапише display:block */
+}
+
+/* Групи та заголовки в мега-меню */
+.dropdown__group { display: flex; flex-direction: column; gap: 4px; }
+.dropdown__title {
+  font-weight: 700; font-size: 15px; margin-bottom: 6px;
+  color: #3B5AFE; border-bottom: 1px solid rgba(0,0,0,.05); padding-bottom: 4px;
+}
+
+/* Посилання (єдине визначення, без дублів) */
+.dropdown__link {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 14px; padding: 6px 8px; border-radius: 8px;
+  color: #111315; white-space: nowrap;
+  transition: background .2s, transform .1s;
+}
+.dropdown__link:hover { background: rgba(59,90,254,.08); transform: translateX(2px); }
+.dropdown__link--accent { font-weight: 700; color: #3B5AFE; }
+.dropdown__link--accent:hover { background: rgba(59,90,254,.12); }
+
+/* Адаптивні колонки для мега-меню */
+@media (max-width: 900px) {
+  .dropdown--mega { min-width: 420px; grid-template-columns: repeat(2, minmax(160px, 1fr)); }
+}
+@media (max-width: 600px) {
+  .dropdown--mega { min-width: 280px; grid-template-columns: 1fr; }
+}
+

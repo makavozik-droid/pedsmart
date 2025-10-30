@@ -1,0 +1,4 @@
+@use "../abstracts/variables" as *;
+
+h1, h2, h3 { margin: 0 0 .5em; line-height: 1.2; font-family: "Poppins", sans-serif; }
+p { margin: 0 0 1em; color: $color-muted; }

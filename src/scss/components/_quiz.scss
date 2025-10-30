@@ -1,0 +1,43 @@
+@use "../abstracts/variables" as *;
+
+.quiz { display: grid; gap: 16px; }
+.quiz__item { background:#fff; border-radius:$radius-lg; box-shadow:$shadow; padding:16px; }
+.quiz__q { font-weight:700; margin-bottom:8px; }
+.quiz__opts { display:grid; gap:6px; }
+.quiz__opt { display:flex; gap:8px; align-items:flex-start; padding:8px; border-radius:10px; }
+.quiz__opt:hover { background: rgba(59,90,254,.06); }
+.quiz__actions { display:flex; gap:10px; justify-content:center; }
+.quiz__btn { @extend .btn !optional; }
+.quiz__btn--primary { @extend .btn--primary !optional; }
+.quiz__btn--ghost { @extend .btn--ghost !optional; }
+
+.quiz__result { text-align:center; font-weight:800; }
+.quiz__explain { font-size:14px; color:$color-muted; }
+
+/* Кнопки у вікторині без чорних рамок */
+.quiz__actions .btn {
+  border: 0;
+  outline: 0;
+  box-shadow: none;
+}
+
+/* «Перевірити» — залишається основною синьою */
+.quiz__actions .btn--primary {
+  background: #3B5AFE;
+  color: #fff;
+}
+
+/* «Скинути» — робимо м’якою сіро-блакитною без рамки */
+.quiz__actions .btn--ghost {
+  background: hsl(240, 9%, 98%);    /* м’який фон */
+  color: #3B5AFE;         /* синій текст */
+  outline: 0;             /* на всяк випадок */
+  border: 0;
+}
+.quiz__actions .btn--ghost:hover {
+  background: #e8edff;
+}
+/* Пояснення підсвічуємо зеленим/червоним залежно від правильності */
+.quiz__explain--correct { color: #16a34a; } /* зелений */
+.quiz__explain--wrong   { color: #dc2626; } /* червоний */
+/* ===================================================== */

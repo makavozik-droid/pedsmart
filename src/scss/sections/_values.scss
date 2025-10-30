@@ -1,0 +1,152 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
+
+.values { padding: 56px 0; }
+.values__head { text-align: center; margin-bottom: 18px; }
+.values__head h2 { @include fluid(22px, 36px); font-weight: 800; }
+.values__head span { color: $color-primary; }
+.values__head p { margin: 6px auto 0; max-width: 60ch; }
+
+.values__track {
+  display: flex; gap: 16px; overflow-x: auto; padding: 6px 4px 12px;
+  scroll-snap-type: x mandatory; -ms-overflow-style: none; scrollbar-width: none;
+}
+.values__track::-webkit-scrollbar { display: none; }
+.values__track .card { flex: 0 0 84%; scroll-snap-align: start; }
+@include respond(md) {
+  .values__track .card { flex-basis: 32%; }
+}
+.values__hint { text-align: center; margin-top: 10px; color: $color-muted; font-size: 14px; }
+
+/* === MEDIA-БЛОК ДЛЯ КАРУСЕЛІ НА ГОЛОВНІЙ (#carousel) === */
+#carousel {
+  /* трек ми вже маємо; важливе — внутрішня анатомія картки */
+}
+
+/* сам елемент картки у каруселі (ширина/висота вже були задані) */
+/* ==== КАРУСЕЛЬ: чистий card-media layout (без фліпу) ==== */
+#carousel {
+  display: flex;
+  gap: 20px;
+  overflow: hidden;
+  padding: 6px 0 12px;
+}
+
+#carousel .card {
+  flex: 0 0 300px;   /* ширина елемента в каруселі */
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 10px 22px rgba(0,0,0,.08);
+  transition: box-shadow .2s ease, transform .2s ease;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;   /* важливо! щоб текст був під фото */
+}
+
+#carousel .card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 28px rgba(0,0,0,.12);
+}
+
+/* верхній медіаблок із фіксованою висотою */
+#carousel .card__media {
+  height: 220px;               /* налаштовувана висота зони картинки */
+  overflow: hidden;
+  border-radius: 16px 16px 0 0; /* скруглення тільки зверху */
+  background: #f2f4ff;
+}
+
+#carousel .card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;           /* акуратно заповнює зону */
+  object-position: 50% 40%;    /* трохи вище центру, щоб «цікавіше» */
+  display: block;
+  transition: transform .6s ease, object-position .6s ease;
+}
+
+#carousel .card:hover .card__media img {
+  transform: scale(1.04);      /* легке наближення на hover */
+  object-position: 50% 30%;
+}
+
+/* текстова частина */
+#carousel .card__body {
+  padding: 14px 14px 16px;
+}
+
+#carousel .card__title {
+  font: 800 18px/1.25 "Poppins", sans-serif;
+  margin: 0 0 6px;
+  color: #111315;
+}
+
+#carousel .card__text {
+  margin: 0;
+  color: #4b5563;
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+/* підказка під треком */
+.values__hint { text-align:center; margin-top:10px; color:#6b7280; font-size:14px; }
+/* ==== КАРУСЕЛЬ: card-media layout З ФЛІПОМ ==== */
+#carousel .card.card--flip:hover .card__inner { transform: rotateY(180deg); }
+#carousel .card__face { backface-visibility: hidden; }
+#carousel .card__back  { transform: rotateY(180deg); display: grid; place-items: center; padding: 16px; }
+
+/* ===== Responsive carousel ===== */
+@media (max-width: $bp-lg) {
+  #carousel { gap: 18px; }
+  #carousel .card { flex: 0 0 280px; }
+  #carousel .card__media { height: 180px; }
+}
+
+@media (max-width: $bp-md) {
+  #carousel { gap: 16px; }
+  #carousel .card { flex: 0 0 260px; }
+  #carousel .card__media { height: 170px; }
+}
+
+@media (max-width: $bp-sm) {
+  /* на планшетах показуємо трохи вужчі картки, щоб влазило 2–2.5 */
+  #carousel .card { flex: 0 0 230px; }
+  #carousel .card__media { height: 160px; }
+  .values__head h2 { font-size: clamp(20px, 3.4vw, 28px); }
+}
+
+@media (max-width: $bp-xs) {
+  /* на телефонах — вузькі, зручні для свайпу */
+  #carousel .card { flex: 0 0 200px; }
+  #carousel .card__media { height: 150px; }
+  .values__hint { font-size: 13px; }
+}
+@media (max-width: 400px) {
+  #carousel .card { flex: 0 0 180px; }
+  #carousel .card__media { height: 140px; }
+}
+/* ===== Responsive library grid ===== */
+@media (max-width: $bp-md) {
+  #library .lib__grid {
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 16px;
+  }
+}
+@media (max-width: $bp-sm) {
+  #library { padding: 40px 0; }
+  #library .card { padding: 14px; }
+  #library .card h3.card__title { font-size: 16px; }
+  #library .card p.card__text  { font-size: 13.5px; }
+}
+@media (max-width: $bp-xs) {
+  #library .lib__grid {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 14px;
+  }
+}
+@media (max-width: 400px) {
+  #library .lib__grid {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 12px;
+  }
+}

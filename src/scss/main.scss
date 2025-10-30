@@ -1,0 +1,520 @@
+@use "abstracts/variables" as *;
+@use "abstracts/mixins" as *;
+
+/* base */
+@use "base/reset";
+@use "base/typography";
+@use "base/helpers";
+
+/* layout */
+@use "layout/container";
+@use "layout/header";
+@use "layout/footer";
+
+/* components */
+@use "components/buttons";
+@use "components/card";
+@use "components/dropdown";
+
+/* sections */
+@use "sections/hero";
+@use "sections/values";
+
+/* інтерактив (можна нижче) */
+@use "components/flashcards";
+@use "components/quiz";
+
+/* ====== Карусель на головній (повністю ізольована) ====== */
+#carousel {
+  display: flex;
+  gap: 20px;
+  overflow: hidden;
+  scroll-behavior: smooth;
+  position: relative;
+}
+
+/* ВАЖЛИВО: фіксовану висоту задаємо ТІЛЬКИ тут */
+#carousel .card {
+  flex: 0 0 280px;
+  height: 340px;
+  cursor: pointer;
+}
+
+#carousel .card.card--flip { perspective: 1000px; }
+
+#carousel .card__inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform .6s ease;
+  transform-style: preserve-3d;
+}
+
+#carousel .card.card--flip:hover .card__inner { transform: rotateY(180deg); }
+
+#carousel .card__face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #fff;
+  padding: 16px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+}
+
+#carousel .card__front .card__img { border-radius: 12px; margin-bottom: 10px; }
+#carousel .card__back  { transform: rotateY(180deg); justify-content: center; align-items: center; }
+#carousel .card__back .btn { margin-top: 12px; }
+
+/* легка “живість” лише в каруселі */
+#carousel .card__face:hover {
+  box-shadow: 0 14px 28px rgba(0,0,0,0.12);
+  transform: translateY(-2px);
+}
+
+/* === БЕЗПЕКОВІ ОВЕРРАЙДИ (щоб ніщо інше не стискалось) === */
+.card { height: auto; }                  /* повертаємо фото/картки до нормального авто-зросту */
+.card.card--flip .card__inner { transform: none; } /* вимикаємо перевороти поза каруселлю */
+
+/* ====== Флешкартки: комфортні розміри ====== */
+.fc { max-width: 780px; margin: 0 auto; }
+.fc__card { min-height: 260px; padding: 20px; height: auto !important; }
+.fc__title { font-size: clamp(18px, 2.2vw, 22px); margin-bottom: 8px; }
+.fc__text  { font-size: clamp(16px, 2vw, 18px); line-height: 1.65; }
+
+/* якщо всередині картки є зображення — не даємо йому «тиснути» текст */
+.fc__card img { max-width: 100%; height: auto; }
+/* ====== Вікторини: комфортні розміри ====== */
+.quiz { max-width: 680px; margin: 0 auto; }
+.quiz__question { font-size: clamp(18px, 2.2vw, 22px); margin-bottom: 12px; }
+.quiz__opt { font-size: clamp(16px, 2vw, 18px); }
+
+/* ===== Бібліотека: компактні плитки-посилання ===== */
+#library .lib__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 16px;
+}
+
+/* робимо «картку-посилання» компактною, без «ефектів каруселі» */
+#library .card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  border-radius: 14px;
+  box-shadow: 0 4px 12px rgba(0,0,0,.06);
+  height: auto;                 /* не фіксуємо висоту */
+  transform: none;              /* скасовуємо глобальний hover-рух */
+  cursor: pointer;
+}
+
+#library .card:hover {
+  box-shadow: 0 6px 16px rgba(0,0,0,.10);
+  transform: translateY(-1px);  /* легкий підйом (опційно) */
+}
+
+/* маленька мініатюра ліворуч */
+#library .card .card__img {
+  width: 96px;
+  height: 96px;
+  flex: 0 0 96px;
+  margin: 0;
+  border-radius: 10px;
+  object-fit: cover;
+}
+#library .card .card__img {
+  display: none;      /* повністю приховуємо мініатюру */
+}
+
+/* текст праворуч від мініатюри */
+#library .card h3.card__title {
+  font-size: 16px;
+  line-height: 1.25;
+  margin: 0 0 4px;
+}
+
+#library .card p.card__text {
+  font-size: 14px;
+  line-height: 1.5;
+  color: #6b7280;
+  margin: 0;
+}
+
+/* посилання розтягується на всю “картку” */
+#library .card > a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: inherit;
+  width: 100%;
+}
+
+/* повністю вимикаємо будь-які flip/перспективи у бібліотеці */
+#library .card__inner,
+#library .card__face { all: unset; }
+#library .card__face { display: flex; align-items: center; gap: 12px; }
+
+/* ===== Ефект плавної появи плиток у бібліотеці ===== */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+#library .card {
+  opacity: 0;
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+/* Затримка для кожної плитки — ефект “каскаду” */
+#library .card:nth-child(1) { animation-delay: 0.1s; }
+#library .card:nth-child(2) { animation-delay: 0.25s; }
+#library .card:nth-child(3) { animation-delay: 0.4s; }
+#library .card:nth-child(4) { animation-delay: 0.55s; }
+
+
+/* ===== Візуальне оновлення бібліотеки ===== */
+#library {
+  background: #f9faff; /* м’який фон усього розділу */
+  padding: 56px 0;
+}
+
+#library .values__head h2 {
+  color: #3B5AFE;
+}
+
+#library .lib__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  transition: all 0.3s ease;
+}
+
+/* Плитка-картка */
+#library .card {
+  position: relative;
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 16px;
+  box-shadow: 0 4px 10px rgba(59, 90, 254, 0.08);
+  transition: all 0.25s ease-in-out;
+  transform: scale(1);
+  cursor: pointer;
+  overflow: hidden;
+}
+
+/* Підсвітка при наведенні */
+#library .card:hover {
+  background: #eef2ff; /* світло-блакитний фон при наведенні */
+  transform: scale(1.04);
+  box-shadow: 0 8px 20px rgba(59, 90, 254, 0.15);
+}
+
+/* Текст */
+#library .card h3.card__title {
+  color: #111315;
+  font-size: 17px;
+  font-weight: 700;
+  margin-bottom: 4px;
+  transition: color 0.2s;
+}
+
+#library .card p.card__text {
+  color: #555b6b;
+  font-size: 14px;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Колір тексту при наведенні */
+#library .card:hover h3.card__title {
+  color: #3B5AFE;
+}
+
+/* ===== Додаємо іконку ↗ для посилань ===== */
+#library .card::after {
+  content: "↗";
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  color: rgba(59, 90, 254, 0.4);
+  font-size: 18px;
+  opacity: 0;
+  transform: translateY(-4px);
+  transition: all 0.25s ease-in-out;
+}
+
+#library .card:hover::after {
+  opacity: 1;
+  transform: translateY(0);
+  color: #3B5AFE;
+}
+/* ====== Кінець стилів для бібліотеки ====== */
+
+//* ===== КАРУСЕЛЬ — стабільний варіант без мерехтіння ===== */
+
+/* контейнер каруселі */
+#carousel {
+  display: flex;
+  gap: 20px;
+  overflow: hidden;
+  scroll-behavior: smooth;
+  position: relative;
+  padding: 6px 0 12px;
+}
+
+/* стабільний розмір карток, одна висота */
+#carousel .card {
+  flex: 0 0 320px;   /* ширина слайду */
+  height: 400px;     /* висота слайду */
+  cursor: pointer;
+  border-radius: 16px;
+  background: transparent;
+  box-shadow: none;
+  transform: none;
+  opacity: 0;                      /* для анімації появи */
+  animation: fadeInUp .6s ease forwards;
+}
+#carousel .card:nth-child(1){animation-delay:.08s}
+#carousel .card:nth-child(2){animation-delay:.20s}
+#carousel .card:nth-child(3){animation-delay:.32s}
+#carousel .card:nth-child(4){animation-delay:.44s}
+
+/* 3D-фліп — лише на внутрішньому шарі */
+#carousel .card.card--flip { perspective: 1000px; }
+#carousel .card__inner {
+  position: relative; width: 100%; height: 100%;
+  transform-style: preserve-3d;
+  transition: transform .6s ease;
+  border-radius: 16px;
+  will-change: transform;
+}
+#carousel .card.card--flip:hover .card__inner { transform: rotateY(180deg); }
+
+/* обидві грані картки — без мерехтіння */
+#carousel .card__face,
+#carousel .card__inner,
+#carousel .card__face * {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+#carousel .card__face {
+  position: absolute; inset: 0;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #f9fbff;                                  /* не чисто біле */
+  border: 1px solid rgba(59, 90, 254, 0.08);
+  box-shadow: 0 10px 22px rgba(0,0,0,.08);
+  padding: 14px;
+  display: flex; flex-direction: column;
+  /* ВАЖЛИВО: на гранях НЕ міняємо transform на :hover (щоб не мерехтіло) */
+}
+#carousel .card__front {
+  z-index: 2;
+  transform: rotateY(0deg) translateZ(1px);             /* легке зміщення вперед */
+}
+#carousel .card__back  {
+  transform: rotateY(180deg) translateZ(1px);
+  display: grid; place-items: center; text-align: center;
+  background: #eef2ff;
+}
+#carousel .card__back .btn { margin-top: 12px; }
+
+/* зображення: менше обрізання завдяки aspect-ratio */
+#carousel .card__img {
+  width: 100%;
+  aspect-ratio: 4/3;             /* було 16/9 — тепер обрізає менше */
+  object-fit: cover;
+  object-position: center 35%;    /* підняли фокус трохи вище */
+  border-radius: 12px;
+  margin-bottom: 10px;
+  transition: transform .6s ease, object-position .8s ease, box-shadow .3s ease;
+  box-shadow: 0 6px 14px rgba(0,0,0,.08);
+}
+/* акуратний pan+zoom лише на фронті, без зайвих transform у контейнерів */
+#carousel .card__front:hover .card__img {
+  object-position: center 25%;
+  transform: scale(1.04);
+  box-shadow: 0 10px 22px rgba(0,0,0,.12);
+}
+
+/* заголовок/текст стабільної висоти, щоб верстка не скакала */
+#carousel .card__title {
+  font: 800 19px/1.25 "Poppins", sans-serif;
+  margin: 6px 0 6px;
+}
+#carousel .card__text {
+  font-size: 14.5px; line-height: 1.55; color: #4b5563;
+  min-height: 44px; /* резерв під 1–2 рядки */
+}
+
+/* легкий hover-акцент тінню (без transform тут!) */
+#carousel .card__front:hover {
+  box-shadow: 0 16px 28px rgba(59, 90, 254, 0.18);
+}
+
+/* фоновий градієнт секції (залишається) */
+.values {
+  background:
+    radial-gradient(1200px 400px at 100% -100px, #f1f4ff 12%, transparent 60%),
+    #fff;
+}
+
+/* поява (каскад) */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* “страхувальні” оверрайди, щоб інші секції не ламались */
+.card { height: auto; }
+#library .card { transform: none; }
+
+/* === КАРТИНКИ В КАРУСЕЛІ БЕЗ ОBRІЗАННЯ (contain) === */
+#carousel .card__img {
+  width: 100%;
+  height: 240px;            /* стабільний блок під медіа */
+  padding: 8px;             /* “рамка”, щоб не прилипало */
+  background: #fff;         /* чисте тло під прозорі PNG/JPG */
+  border-radius: 12px;
+  object-fit: contain;      /* ключ: не обрізаємо, вписуємо */
+  object-position: center;  /* по центру */
+  margin-bottom: 10px;
+  box-shadow: 0 6px 14px rgba(0,0,0,.06);
+}
+
+/* трохи крупніше при наведенні, без зрушення */
+#carousel .card__front:hover .card__img {
+  transform: scale(1.03);
+  box-shadow: 0 10px 22px rgba(0,0,0,.10);
+}
+
+/* щоб текст не «стрибав» від різних фото */
+#carousel .card__title { min-height: 24px; }
+#carousel .card__text  { min-height: 44px; }
+
+/* === КНОПКИ КЕРУВАННЯ КАРУСЕЛЛЮ === */
+.carousel__controls{
+  display:flex; gap:10px; justify-content:center; margin-top:10px;
+}
+.carousel__btn{
+  width:40px; height:40px; border:0; border-radius:12px;
+  background:#3B5AFE; color:#fff; font-size:22px; line-height:1;
+  cursor:pointer; box-shadow:0 8px 18px rgba(59,90,254,.18);
+  transition: filter .15s ease, transform .1s ease;
+}
+.carousel__btn:hover{ filter:brightness(.92); transform: translateY(-1px); }
+.carousel__btn:active{ transform: translateY(0); }
+
+/* Flashcards */
+@media (max-width: $bp-sm) {
+  .fc { max-width: 95%; }
+  .fc__card { min-height: 220px; }
+}
+
+/* Quiz */
+@media (max-width: $bp-sm) {
+  .quiz { max-width: 95%; }
+  .quiz__options { gap: 8px; }
+  .quiz__opt span { font-size: 15px; }
+}
+/* ===== Responsive header ===== */
+@media (max-width: $bp-md) {
+  .header__wrap { gap: 12px; }
+  .brand__logo { width: 48px; height: 48px; }
+  .brand__text { font-size: 24px; }
+  .nav__list { gap: 12px; }
+}
+/* ====== Ніжний редизайн флешкарток ====== */
+.fc {
+  max-width: 760px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.fc__card {
+  background: linear-gradient(180deg, #fff9fb 0%, #ffeef5 100%);
+  border-radius: 20px;
+  box-shadow: 0 12px 24px rgba(255, 182, 193, 0.25);
+  padding: 28px 24px;
+  min-height: 260px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.fc__card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 32px rgba(255, 182, 193, 0.3);
+}
+
+/* Заголовок */
+.fc__title {
+  font-size: clamp(18px, 2.2vw, 22px);
+  color: #1e1e2d;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+/* Текст */
+.fc__text {
+  font-size: clamp(16px, 2vw, 18px);
+  color: #444;
+  line-height: 1.65;
+}
+
+/* Кнопки */
+.fc__btn {
+  background: #ffb6c1;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 18px;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.25s ease, transform 0.2s ease;
+}
+
+.fc__btn:hover {
+  background: #ff9eb1;
+  transform: translateY(-2px);
+}
+
+.fc__btn:active {
+  transform: scale(0.96);
+}
+
+/* Лічильник */
+.fc__counter {
+  margin-top: 8px;
+  color: #6b7280;
+  font-size: 15px;
+}
+
+/* Мобільна адаптація */
+@media (max-width: 768px) {
+  .fc__card {
+    min-height: 220px;
+    padding: 20px 16px;
+  }
+
+  .fc__title {
+    font-size: 18px
+  };
+  }
